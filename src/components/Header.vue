@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-[50px] flex justify-end px-10 gap-10 shadow-md items-center">
-    <ButtonTemplate @click="logoutUser">{{ fullName.toUpperCase() }}</ButtonTemplate>
+    <ButtonTemplate @click="logoutUser">{{ fullName.toUpperCase() || 'Выйти' }}</ButtonTemplate>
   </div>
 </template>
 

@@ -10,10 +10,13 @@
         :wishItem="wishItem"
         :key="wishItem._id"
         @dblclick="getItem(wishItem._id)"
+        @deleteWishItem="deleteById"
+        :showBtns="true"
+        :isAnimation="true"
       />
     </div>
     <ModalTemplate v-model:show="showModal">
-      <AddWishModal @closeModal="this.showModal = false" />
+      <AddWishModal @closeModal="this.showModal = false" @saveWish="createWish" />
     </ModalTemplate>
   </div>
 </template>
@@ -35,6 +38,15 @@ export default {
     },
     getItem(id) {
       this.$router.push(`/wish-list/${id}`)
+    },
+    async createWish(newWish) {
+      await Api().wish.createWishItem(newWish)
+      this.showModal = false
+      this.getWishList()
+    },
+    async deleteById(id) {
+      await Api().wish.deleteWishItem(id)
+      this.getWishList()
     }
   },
   mounted() {

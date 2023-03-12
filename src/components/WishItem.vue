@@ -16,7 +16,7 @@
         </div>
       </div>
       <div v-if="showBtns" class="flex gap-2 justify-between">
-        <ButtonTemplate>Update</ButtonTemplate>
+        <ButtonTemplate @click="$emit('editWishItem', wishItem._id)">Update</ButtonTemplate>
         <ButtonTemplate @click="$emit('deleteWishItem', wishItem._id)">Delete</ButtonTemplate>
       </div>
     </div>

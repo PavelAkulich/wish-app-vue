@@ -11,6 +11,7 @@
         :key="wishItem._id"
         @dblclick="getItem(wishItem._id)"
         @deleteWishItem="deleteById"
+        @editWishItem="editById"
         :showBtns="true"
         :isAnimation="true"
       />
@@ -47,6 +48,9 @@ export default {
     async deleteById(id) {
       await Api().wish.deleteWishItem(id)
       this.getWishList()
+    },
+    editById(id) {
+      this.$router.push(`/wish-list/${id}/edit`);
     }
   },
   mounted() {

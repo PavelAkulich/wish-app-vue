@@ -16,8 +16,8 @@
         <div className="flex px-10 justify-between items-center">
           <div>{{`Владелец: ${wishItem.user?.fullName}`}}</div>
           <div className="flex gap-10 justify-between">
-            <ButtonTemplate>Редактировать</ButtonTemplate>
-            <ButtonTemplate>Удалить</ButtonTemplate>
+            <ButtonTemplate @click="editById">Редактировать</ButtonTemplate>
+            <ButtonTemplate @click="deleteById">Удалить</ButtonTemplate>
           </div>
         </div>
       </div>
@@ -41,6 +41,13 @@ export default {
       const res = await Api().wish.getWishItem(this.$route.params.id)
       this.wishItem = res
       this.isLoading = false
+    },
+    async deleteById() {
+      await Api().wish.deleteWishItem(this.wishItem._id)
+      this.$router.replace("/wish-list");
+    },
+    editById() {
+      this.$router.push(`/wish-list/${this.wishItem._id}/edit`);
     }
   },
   mounted() {
